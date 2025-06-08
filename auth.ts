@@ -1,44 +1,40 @@
-// app/api/auth/[...nextauth]/route.ts atau auth.ts
-
 import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { PrismaClient } from '@/lib/generated/prisma';
-import Google from "next-auth/providers/google";
-import Credentials from "next-auth/providers/credentials";
+import { PrismaClient, User as PrismaUser } from "@/lib/generated/prisma";
+import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
+import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
-
   providers: [
-    Google({
+    GoogleProvider({
       clientId: process.env.AUTH_GOOGLE_ID!,
       clientSecret: process.env.AUTH_GOOGLE_SECRET!,
     }),
 
-    Credentials({
+    CredentialsProvider({
       name: "Credentials",
       credentials: {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
-          return null;
-        }
+      async authorize(credentials): Promise<PrismaUser | null> {
+        const email = credentials?.email as string | undefined;
+        const password = credentials?.password as string | undefined;
 
-        // Cari user dari database menggunakan Prisma
+        if (!email || !password) return null;
+
         const user = await prisma.user.findUnique({
-          where: { email: credentials.email },
+          where: { email },
         });
 
-        if (!user || !user.hashedPassword) return null;
+        if (!user?.hashedPassword) return null;
 
-        const passwordCorrect = credentials.password === user.hashedPassword;
-        // ⚠️ Gantilah dengan bcrypt.compare() kalau sudah hash password
-
-        if (!passwordCorrect) return null;
+        const isPasswordValid = await bcrypt.compare(password, user.hashedPassword);
+        if (!isPasswordValid) return null;
 
         return user;
       },
@@ -51,7 +47,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
   callbacks: {
     async session({ session, token }) {
-      if (token.sub) {
+      if (session.user && token.sub) {
         session.user.id = token.sub;
       }
       return session;
