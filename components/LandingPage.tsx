@@ -8,6 +8,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"; // 1. Import ScrollTrigger
 import { ServicesSection } from "./ServicesSection";
 import { WiseStyleHero } from "./WiseStyleHero";
 import MunuScrollPage from "./scroll/aboutMunu";
+import { MunuCommunity } from "./MunuCommunity";
+import { MunuTestimonials } from "./MunuTestimonial";
 
 // 2. Daftarkan plugin ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
@@ -76,6 +78,10 @@ export function MunuLandingPage() {
         <WiseStyleHero/>
 
         <MunuScrollPage/>
+
+        <MunuTestimonials/>
+
+        <MunuCommunity/>
 
         {/* Tambahkan div ini sebagai trigger untuk ServicesSection */}
         <div className="services-section-trigger h-1"></div>
