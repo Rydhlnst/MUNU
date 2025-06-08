@@ -72,7 +72,7 @@ export function InteractiveDashboardMockup() {
           {barHeights.map((height, i) => (
             <div key={i} className="w-full" style={{ height: `${height * 100}%` }}>
               {/* Beri kelas agar mudah ditarget oleh GSAP */}
-              <div className="chart-bar w-full h-full bg-green-500 rounded-t-sm" />
+              <div className="chart-bar w-full h-full bg-primary rounded-t-sm" />
             </div>
           ))}
         </div>
@@ -87,10 +87,10 @@ export function InteractiveDashboardMockup() {
         </div>
         <div className="transaction-item flex justify-between items-center py-2">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-green-100 dark:bg-green-900/50 rounded-full"><DollarSign className="text-green-500" size={16}/></div>
+            <div className="p-2 bg-green-100 dark:bg-green-900/50 rounded-full"><DollarSign className="text-primary" size={16}/></div>
             <span className="font-medium">Monthly Salary</span>
           </div>
-          <span className="font-mono text-green-500">+$3,200.00</span>
+          <span className="font-mono text-primary">+$3,200.00</span>
         </div>
       </CardContent>
     </Card>

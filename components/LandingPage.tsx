@@ -1,93 +1,85 @@
-// components/MunuLandingPage.tsx (versi final yang interaktif dengan GSAP)
+// components/MunuLandingPage.tsx (Versi Final yang Lebih Interaktif)
 
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ArrowRight} from "lucide-react";
 import { gsap } from "gsap";
-import { InteractiveDashboardMockup } from "./interactive-dashboard"; // Pastikan path benar
-import { ServicesSection } from "./ServicesSection"; // Pastikan path benar
+import { ScrollTrigger } from "gsap/ScrollTrigger"; // 1. Import ScrollTrigger
+import { ServicesSection } from "./ServicesSection";
+import { WiseStyleHero } from "./WiseStyleHero";
+import MunuScrollPage from "./scroll/aboutMunu";
+
+// 2. Daftarkan plugin ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
 
 export function MunuLandingPage() {
   const component = useRef(null);
+  const dashboardMockupRef = useRef(null); // Ref untuk mockup dashboard
 
-  // Gunakan useLayoutEffect untuk menjalankan animasi GSAP saat komponen dimuat
   useLayoutEffect(() => {
-    // Buat context GSAP untuk cleanup otomatis
     const ctx = gsap.context(() => {
-      // Animasikan semua elemen dengan kelas .hero-item secara berurutan (stagger)
+      // === Animasi Hero Section (Stagger) - Tetap sama ===
       gsap.from(".hero-item", {
-        y: 30,
+        y: 50, // Sedikit lebih jauh untuk efek lebih dramatis
         opacity: 0,
-        stagger: 0.2, // Jeda 0.2 detik antar animasi elemen
-        duration: 0.8,
-        ease: 'power3.out',
+        stagger: 0.2,
+        duration: 1,
+        ease: 'power4.out',
         delay: 0.2,
       });
-    }, component); // Scope animasi ke komponen ini
 
-    // Fungsi cleanup saat komponen unmount
+      // === 3. Animasi Parallax untuk Mockup Dashboard ===
+      gsap.to(dashboardMockupRef.current, {
+        y: -100, // Bergerak ke atas saat scroll ke bawah
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".hero-section", // Trigger dimulai saat hero section masuk viewport
+          start: "top top", // Mulai saat bagian atas trigger bertemu bagian atas viewport
+          end: "bottom top", // Selesai saat bagian bawah trigger bertemu bagian atas viewport
+          scrub: true, // Animasi terikat langsung dengan posisi scroll
+        },
+      });
+      
+      // === 4. Animasi Mikro saat Hover pada Tombol Utama ===
+      const mainButton = document.querySelector(".main-cta-button");
+      mainButton?.addEventListener("mouseenter", () => {
+        gsap.to(".main-cta-arrow", { x: 5, duration: 0.3, ease: "power2.inOut" });
+      });
+      mainButton?.addEventListener("mouseleave", () => {
+        gsap.to(".main-cta-arrow", { x: 0, duration: 0.3, ease: "power2.inOut" });
+      });
+      
+      // === 5. Animasi untuk ServicesSection saat discroll ===
+      // Kita asumsikan di dalam ServicesSection ada elemen dengan kelas .service-card
+      gsap.from(".service-card", {
+          y: 100,
+          opacity: 0,
+          stagger: 0.2,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+              trigger: ".services-section-trigger", // Sebuah elemen trigger sebelum section
+              start: "top 80%", // Mulai animasi saat trigger 80% masuk viewport
+              toggleActions: "play none none none", // Mainkan sekali saat masuk
+          }
+      });
+
+    }, component);
+
     return () => ctx.revert();
   }, []);
 
   return (
-    // Kaitkan ref ke elemen terluar dari seksi yang akan dianimasikan
     <div ref={component} className="flex flex-col min-h-screen bg-background">
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 max-w-7xl mx-auto min-h-screen items-center flex px-8 md:px-0">
-          <div className="container px-4 md:px-6">
-            <div className="grid gap-12 md:grid-cols-2 lg:gap-16">
-              
-              {/* Kolom Kiri: Teks & CTA */}
-              <div className="flex flex-col items-center justify-center space-y-6 text-center md:items-start md:text-left">
-                <div className="space-y-4">
-                  {/* Tambahkan kelas .hero-item untuk ditarget oleh GSAP */}
-                  <h1 className="hero-item text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                    Kendalikan Keuangan Pribadi Anda dengan Mudah
-                  </h1>
-                  <p className="hero-item max-w-[600px] text-muted-foreground md:text-xl">
-                    Munu adalah dasbor finansial all-in-one yang membantu Anda melacak pengeluaran, membuat anggaran, dan mencapai tujuan finansial Anda lebih cepat.
-                  </p>
-                </div>
-                <div className="hero-item flex flex-col gap-2 min-[400px]:flex-row">
-                  <Button size="lg" className="bg-green-600 hover:bg-green-700">
-                    Mulai Gratis
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </div>
-                <div className="hero-item flex items-center gap-4 pt-4">
-                  <div className="flex -space-x-2">
-                    <Avatar>
-                      <AvatarImage src="https://github.com/shadcn.png" alt="User 1" />
-                      <AvatarFallback>U1</AvatarFallback>
-                    </Avatar>
-                    <Avatar>
-                      <AvatarImage src="https://github.com/vercel.png" alt="User 2" />
-                      <AvatarFallback>U2</AvatarFallback>
-                    </Avatar>
-                    <Avatar>
-                      <AvatarImage src="https://github.com/styfle.png" alt="User 3" />
-                      <AvatarFallback>U3</AvatarFallback>
-                    </Avatar>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    Dipercaya oleh 2,000+ pengguna di seluruh dunia.
-                  </p>
-                </div>
-              </div>
+        <WiseStyleHero/>
 
-              {/* Kolom Kanan: Ganti Skeleton dengan Komponen Interaktif */}
-              <div className="flex items-center justify-center">
-                <InteractiveDashboardMockup />
-              </div>
+        <MunuScrollPage/>
 
-            </div>
-          </div>
-        </section>
-        <ServicesSection/>
+        {/* Tambahkan div ini sebagai trigger untuk ServicesSection */}
+        <div className="services-section-trigger h-1"></div>
+        <ServicesSection />
       </main>
     </div>
   );

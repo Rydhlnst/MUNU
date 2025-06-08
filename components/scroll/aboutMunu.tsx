@@ -1,0 +1,97 @@
+// app/munu-scroll/page.tsx (Perbaikan Final untuk Posisi Tengah)
+
+"use client";
+
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import { Skeleton } from "@/components/ui/skeleton";
+
+gsap.registerPlugin(ScrollTrigger);
+
+export default function MunuScrollPage() {
+  const containerRef = useRef(null);
+  const pinTargetRef = useRef(null);
+  const headingRef = useRef(null);
+  const subTextRef = useRef(null);
+
+  // Definisikan tinggi navbar Anda di sini agar konsisten
+  const navbarHeight = 80;
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          // Mulai pin tepat di bawah navbar
+          start: `top ${navbarHeight}px`,
+          end: "+=150%",
+          scrub: 1,
+          pin: pinTargetRef.current,
+          pinSpacing: true,
+        },
+      });
+
+      tl.from(headingRef.current, {
+        yPercent: 150,
+        opacity: 0,
+        duration: 1.2,
+        ease: 'power4.out',
+      }).from(subTextRef.current, {
+        y: 80,
+        opacity: 0,
+        duration: 1.2,
+        ease: 'power4.out',
+      }, "-=1");
+
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <>
+      <section
+        ref={containerRef}
+        className="relative h-[200vh] bg-[#115c39] text-white"
+      >
+        {/* PERUBAHAN KUNCI DI SINI:
+          - h-[calc(100vh-80px)]: Mengatur tinggi elemen agar pas dengan sisa layar di bawah navbar.
+          - top-[80px]: Mengatur posisi awal elemen agar tidak ada 'flicker' saat GSAP mengambil alih.
+          - Sesuaikan nilai 80px jika tinggi navbar Anda berbeda.
+        */}
+        <div
+            ref={pinTargetRef}
+            style={
+                    {
+                    '--navbar-height': `${navbarHeight}px`,
+                    } as React.CSSProperties
+                }
+            className="w-full h-[calc(100vh-var(--navbar-height))] relative flex items-center justify-center px-6 text-center"
+            >
+            <div className="transform -translate-y-6 max-w-4xl"> {/* UBAH DI SINI */}
+                <h1
+                ref={headingRef}
+                className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-white mb-6 leading-tight"
+                >
+                Meet MUNU
+                </h1>
+                <p
+                ref={subTextRef}
+                className="max-w-2xl mx-auto text-lg md:text-xl text-white opacity-80"
+                >
+                Your all-in-one finance platform to track, save, invest, and grow — globally.
+                </p>
+            </div>
+            </div>
+      </section>
+
+      {/* Section Konten Lanjutan */}
+      <section className="h-screen bg-primary flex items-center justify-center">
+        <div className="w-full max-w-6xl mx-auto px-8">
+          <Skeleton className="w-full aspect-video rounded-xl shadow-lg" />
+        </div>
+      </section>
+    </>
+  );
+}

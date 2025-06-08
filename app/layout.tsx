@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
+import { Chivo_Mono, Plus_Jakarta_Sans, DM_Sans, Inter } from "next/font/google";
 import { auth } from "@/auth";
 import { ThemeProvider } from "@/components/theme-provider";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: {
@@ -40,6 +42,29 @@ export const metadata: Metadata = {
   },
 };
 
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-plus-jakarta",
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-dm-sans",
+  display: "swap",
+});
+
+const chivoMono = Chivo_Mono({
+  subsets: ["latin"],
+  variable: "--font-chivo-mono",
+  display: "swap",
+});
 
 export default async function RootLayout({
   children,
@@ -50,7 +75,7 @@ export default async function RootLayout({
   return (
      <SessionProvider session={session}>
       <html lang="en" suppressHydrationWarning>
-        <body>
+        <body className={cn(chivoMono.variable, dmSans.variable, plusJakarta.variable, inter.variable)}>
           <ThemeProvider attribute="class"
             defaultTheme="system"
             enableSystem
