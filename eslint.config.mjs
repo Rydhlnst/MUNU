@@ -11,29 +11,28 @@ const compat = new FlatCompat({
 });
 
 const config = [
-  // Config utama untuk file TypeScript/TSX
   {
-    files: ["**/*.ts", "**/*.tsx"],
     ignores: [
       "node_modules/**",
       ".next/**",
       "dist/**",
       "build/**",
-      "lib/generated/**", // <== abaikan hasil Prisma
+      "lib/generated/**", // ✅ abaikan Prisma
     ],
-    plugins: {},
-    rules: {
-      // Custom rules (optional)
-    },
+  },
+  {
+    files: ["**/*.ts", "**/*.tsx"],
     languageOptions: {
       parserOptions: {
         project: "./tsconfig.json",
       },
     },
+    rules: {
+      // custom rules (optional)
+    },
   },
-
-  // Tambahkan config dari Next.js
   ...compat.extends("next/core-web-vitals", "next/typescript"),
 ];
 
 export default config;
+
