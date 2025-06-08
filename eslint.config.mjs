@@ -1,3 +1,4 @@
+// eslint.config.js
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";
@@ -9,8 +10,30 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
-const eslintConfig = [
+const config = [
+  // Config utama untuk file TypeScript/TSX
+  {
+    files: ["**/*.ts", "**/*.tsx"],
+    ignores: [
+      "node_modules/**",
+      ".next/**",
+      "dist/**",
+      "build/**",
+      "lib/generated/**", // <== abaikan hasil Prisma
+    ],
+    plugins: {},
+    rules: {
+      // Custom rules (optional)
+    },
+    languageOptions: {
+      parserOptions: {
+        project: "./tsconfig.json",
+      },
+    },
+  },
+
+  // Tambahkan config dari Next.js
   ...compat.extends("next/core-web-vitals", "next/typescript"),
 ];
 
-export default eslintConfig;
+export default config;
