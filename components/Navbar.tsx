@@ -98,7 +98,7 @@ export function Navbar() {
         
         <div className="flex items-center">
             <Link href="/" className="flex items-center" prefetch={false}>
-                <Mountain className="h-6 w-6 text-green-600" />
+                <Mountain className="h-6 w-6 text-primary" />
                 <span className="ml-2 text-xl font-bold tracking-tighter text-foreground">Munu</span>
             </Link>
         </div>

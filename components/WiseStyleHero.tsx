@@ -5,11 +5,9 @@ import React, { useRef, useLayoutEffect } from "react";
 import { gsap } from "gsap";
 import { Button } from "@/components/ui/button";
 
-// --- Konstanta Font --- //
 const FONT_LIST = ["var(--font-alt)", "var(--font-mono)"];
 const ORIGINAL_FONT = "var(--font-heading)";
 
-// --- Komponen SplitText: Membungkus tiap huruf ke dalam <span> --- //
 const SplitText = React.memo(({ children }: { children: string }) => {
   return (
     <>
@@ -27,17 +25,14 @@ const SplitText = React.memo(({ children }: { children: string }) => {
 });
 SplitText.displayName = "SplitText";
 
-// --- Komponen Utama Hero --- //
 export function WiseStyleHero() {
   const componentRef = useRef(null);
   const subheadlineRef = useRef<HTMLElement | null>(null);
 
   useLayoutEffect(() => {
-    // Pastikan tipe HTMLElement untuk menghindari error
     const subheadline = subheadlineRef.current;
 
     const ctx = gsap.context(() => {
-      // Fade-in animasi awal
       gsap.from(".fade-in", {
         opacity: 0,
         y: 20,
@@ -47,11 +42,9 @@ export function WiseStyleHero() {
         delay: 0.2,
       });
 
-      // Animasi acak per huruf secara berkala
       const animateRandomLetter = () => {
-        // PERUBAHAN 2: Buat selector lebih spesifik. Hanya targetkan .letter di dalam .headline-text
         const letters = gsap.utils.toArray(".headline-text .letter");
-        if (letters.length === 0) return; // Pengaman jika elemen belum ada
+        if (letters.length === 0) return;
 
         const randomLetter = gsap.utils.random(letters) as Element;
         const randomFont = gsap.utils.random(FONT_LIST);
@@ -76,7 +69,6 @@ export function WiseStyleHero() {
 
       const interval = setInterval(animateRandomLetter, 400);
 
-      // Interaksi hover di subheadline (LOGIKA INI SUDAH BENAR DAN TIDAK PERLU DIUBAH)
       if (!subheadline) return;
 
       const onEnter = (e: MouseEvent) => {
@@ -119,12 +111,10 @@ export function WiseStyleHero() {
   return (
     <section
       ref={componentRef}
-      className="flex flex-col items-center justify-center w-full min-h-screen bg-white text-black px-4 py-16"
+      className="flex flex-col items-center justify-center w-full min-h-screen bg-white dark:bg-background text-black dark:text-white px-4 py-16"
       style={{ fontFamily: ORIGINAL_FONT }}
     >
       <div className="w-full max-w-6xl mx-auto flex flex-col items-center text-center">
-        {/* Headline */}
-        {/* PERUBAHAN 1: Tambahkan className "headline-text" di sini */}
         <div className="mb-8 headline-text">
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none">
             <div className="fade-in">
@@ -141,7 +131,7 @@ export function WiseStyleHero() {
 
         <p
           ref={subheadlineRef as React.RefObject<HTMLParagraphElement>}
-          className="fade-in max-w-xl text-lg md:text-xl text-slate-700 mb-10 cursor-pointer"
+          className="fade-in max-w-xl text-lg md:text-xl text-slate-700 dark:text-slate-300 mb-10 cursor-pointer"
           style={{ fontFamily: "var(--font-sans)" }}
         >
           <SplitText>
@@ -149,11 +139,10 @@ export function WiseStyleHero() {
           </SplitText>
         </p>
 
-        {/* CTA Buttons */}
         <div className="fade-in flex flex-col sm:flex-row gap-4">
           <Button
             size="lg"
-            className="bg-primary font-bold hover:bg-primary/90 text-base px-8 py-6 text-white"
+            className="bg-primary font-bold hover:bg-primary/90 text-base px-8 py-6 text-white dark:text-white"
             style={{ fontFamily: "var(--font-sans)" }}
           >
             Open an account
@@ -161,7 +150,7 @@ export function WiseStyleHero() {
           <Button
             size="lg"
             variant="outline"
-            className="border-slate-300 text-black font-bold hover:bg-slate-100 text-base px-8 py-6"
+            className="border-slate-300 dark:border-slate-600 text-black dark:text-white font-bold hover:bg-slate-100 dark:hover:bg-slate-800 text-base px-8 py-6"
             style={{ fontFamily: "var(--font-sans)" }}
           >
             Send money now

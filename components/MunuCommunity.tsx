@@ -40,21 +40,22 @@ const faqs = [
 
 export function MunuCommunity() {
   return (
-    <section className="w-full bg-white py-20 px-4 md:px-8 lg:px-16 h-screen flex items-center justify-center">
+    <section className="w-full bg-background py-20 px-4 md:px-8 lg:px-16 min-h-screen flex items-center justify-center">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
         {/* Kolom Kiri: Judul dan Tombol CTA */}
         <div className="flex flex-col space-y-6">
-          <h2 className="font-serif text-2xl italic text-primary">
-            Komunitas
-          </h2>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tighter text-gray-900">
+          <h2 className="font-serif text-2xl italic text-primary">Komunitas</h2>
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tighter text-foreground">
             Bantuan apapun yang Anda butuhkan, kami siap membantu
           </h1>
-          <p className="text-gray-600 text-lg">
+          <p className="text-muted-foreground text-lg">
             Bergabunglah dengan komunitas para pemilik restoran, manajer, dan pegiat F&B lainnya untuk berbagi tips dan mendapatkan dukungan.
           </p>
           <div>
-            <Button size="lg" className="bg-primary text-white hover:bg-gray-800">
+            <Button
+              size="lg"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+            >
               <HugeiconsIcon icon={DiscordFreeIcons} className="mr-2 h-5 w-5" />
               Gabung Discord
             </Button>
@@ -66,10 +67,10 @@ export function MunuCommunity() {
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq, index) => (
               <AccordionItem value={`item-${index}`} key={index}>
-                <AccordionTrigger className="text-lg text-left font-medium hover:no-underline">
+                <AccordionTrigger className="text-lg text-left font-medium text-foreground hover:no-underline">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-base text-gray-700">
+                <AccordionContent className="text-base text-muted-foreground">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

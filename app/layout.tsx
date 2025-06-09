@@ -5,8 +5,11 @@ import { Chivo_Mono, Plus_Jakarta_Sans, DM_Sans, Inter } from "next/font/google"
 import { auth } from "@/auth";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
+import { FeedbackWidget } from "@/components/FeedbackWidget";
+
 
 export const metadata: Metadata = {
+  
   title: {
     default: "MUNU – Manajemen Keuangan Pribadi & Investasi",
     template: "%s | MUNU",
@@ -71,16 +74,19 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
     const session = await auth();
   return (
      <SessionProvider session={session}>
       <html lang="en" suppressHydrationWarning>
-        <body className={cn(chivoMono.variable, dmSans.variable, plusJakarta.variable, inter.variable)}>
+        
+        <body className={cn("font-sans", chivoMono.variable, dmSans.variable, plusJakarta.variable, inter.variable)}>
           <ThemeProvider attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange>
             {children}
+            <FeedbackWidget/>
           </ThemeProvider>
         </body>
       </html>
