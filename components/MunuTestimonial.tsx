@@ -2,6 +2,7 @@
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Image from "next/image";
+import { TiltCard } from "./gsap/tilt-card";
 
 const testimonials = [
   {
@@ -63,31 +64,32 @@ export function MunuTestimonials() {
         {/* Testimonials Grid */}
         <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
           {testimonials.map((testimonial) => (
-            <Card
-              key={testimonial.handle}
-              className="break-inside-avoid bg-card border-border border shadow-sm transition-colors"
-            >
-              <CardHeader>
-                <div className="flex items-center gap-4">
-                  <Image
-                    src={testimonial.avatar}
-                    alt={`Avatar of ${testimonial.name}`}
-                    width={48}
-                    height={48}
-                    className="rounded-full"
-                  />
-                  <div>
-                    <h3 className="font-semibold text-lg text-foreground">
-                      {testimonial.name}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">{testimonial.handle}</p>
+            <TiltCard key={testimonial.handle}>
+              <Card
+                className="break-inside-avoid bg-card border-border border shadow-sm transition-colors"
+              >
+                <CardHeader>
+                  <div className="flex items-center gap-4">
+                    <Image
+                      src={testimonial.avatar}
+                      alt={`Avatar of ${testimonial.name}`}
+                      width={48}
+                      height={48}
+                      className="rounded-full"
+                    />
+                    <div>
+                      <h3 className="font-semibold text-lg text-foreground">
+                        {testimonial.name}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">{testimonial.handle}</p>
+                    </div>
                   </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{testimonial.content}</p>
-              </CardContent>
-            </Card>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">{testimonial.content}</p>
+                </CardContent>
+              </Card>
+            </TiltCard>
           ))}
         </div>
       </div>

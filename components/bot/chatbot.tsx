@@ -34,25 +34,34 @@ export default function Chatbot() {
 
   const chatWindowRef = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
+  const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
   // GSAP open/close animation
   useGSAP(() => {
     gsap.set(chatWindowRef.current, { autoAlpha: 0, y: 50, scale: 0.9 });
+
     const tl = gsap.timeline({ paused: true });
     tl.to(chatWindowRef.current, {
-      autoAlpha: 1,
-      y: 0,
-      scale: 1,
-      duration: 0.4,
-      ease: "power3.out",
+        autoAlpha: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.4,
+        ease: "power3.out",
     });
 
-    if (open) {
-        tl.play();
+    timelineRef.current = tl;
+    }, []);
+
+    useEffect(() => {
+        if (!timelineRef.current) return;
+
+        if (open) {
+            timelineRef.current.play();
         } else {
-        tl.reverse();
+            timelineRef.current.reverse();
         }
-  }, [open]);
+        }, [open]);
+
 
   const handleAsk = async (question: string) => {
     if (!question || isLoading) return;
@@ -95,6 +104,7 @@ export default function Chatbot() {
     <>
       {/* Chat Window */}
       <div
+        suppressHydrationWarning
         ref={chatWindowRef}
         className="fixed bottom-24 right-6 z-[999] w-[calc(100vw-48px)] max-w-sm"
       >
