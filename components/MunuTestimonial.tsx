@@ -6,45 +6,45 @@ import Image from "next/image";
 const testimonials = [
   {
     name: "Andini Lestari",
-    handle: "Pemilik Kafe 'Senja'",
+    handle: "Owner of 'Senja' Café",
     avatar: "https://i.pravatar.cc/150?u=andini",
     content:
-      "“Dulu pusing banget misahin keuangan kafe dan pribadi, cash flow sering macet. Sejak pakai MUNU, semua jadi terperinci di satu dashboard. Advisor-nya juga membantu saya membuat budget bisnis yang sehat. Sekarang saya bisa fokus mengembangkan usaha dengan tenang.”",
+      "“I used to struggle separating personal and business finances—cash flow was always messy. Since using MUNU, everything is organized in one dashboard. The advisor also helped me create a healthy business budget. Now I can focus on growing my café with peace of mind.”",
   },
   {
     name: "Chef Rendra",
     handle: "Executive Chef",
     avatar: "https://i.pravatar.cc/150?u=rendra",
     content:
-      "“Gaji saya cukup besar, tapi entah kenapa selalu habis tak bersisa. MUNU membantu saya melacak pengeluaran dan membuat rencana investasi pertama saya. Melihat portofolio bertumbuh, saya jadi lebih optimis menatap masa depan finansial saya.”",
+      "“I earn a good salary, but it always seemed to disappear quickly. MUNU helped me track my spending and plan my first investment. Seeing my portfolio grow made me more optimistic about my financial future.”",
   },
   {
     name: "Grace Wijaya",
     handle: "Marketing Manager",
     avatar: "https://i.pravatar.cc/150?u=grace",
     content:
-      "“Sebagai seorang profesional yang sibuk, saya tidak punya waktu untuk mengelola investasi secara mendalam. Proses onboarding MUNU sangat efisien. Kini, saya bisa memantau semua aset saya dan berkonsultasi dengan advisor kapan saja. Sangat praktis!”",
+      "“As a busy professional, I never had time to manage investments deeply. MUNU’s onboarding was so efficient. Now I can monitor all my assets and consult an advisor anytime. It’s incredibly convenient!”",
   },
   {
     name: "Budi Santoso",
-    handle: "Pemilik Usaha Keluarga",
+    handle: "Family Business Owner",
     avatar: "https://i.pravatar.cc/150?u=budi",
     content:
-      "“Yang membuat saya tertarik adalah perencanaan jangka panjangnya. MUNU membantu saya merancang dana pendidikan untuk anak dan program pensiun. Rasanya lega sekali mengetahui bahwa masa depan keluarga saya sudah terjamin dan terencana dengan baik.”",
+      "“What caught my attention was the long-term planning. MUNU helped me plan for my children’s education and my retirement fund. It feels reassuring to know that my family’s future is well-planned and secure.”",
   },
   {
     name: "David",
     handle: "Project Manager",
     avatar: "https://i.pravatar.cc/150?u=david",
     content:
-      "“Dulu saya takut untuk mulai investasi karena terlihat rumit. Advisor dari MUNU menjelaskan semuanya dengan sabar dan bahasa yang mudah dimengerti. Saya bisa mulai dengan modal kecil, dan sekarang investasi sudah menjadi kebiasaan rutin.”",
+      "“I used to be afraid of investing because it seemed complicated. MUNU’s advisor explained everything patiently and in simple terms. I started with a small amount, and now investing has become a habit.”",
   },
   {
     name: "Pak Joko",
-    handle: "Pensiunan",
+    handle: "Retiree",
     avatar: "https://i.pravatar.cc/150?u=joko",
     content:
-      "“Meskipun saya tidak terlalu melek teknologi, aplikasi MUNU ternyata mudah sekali dipakai. Tampilannya sederhana. Saya jadi bisa mengelola dana pensiun saya sendiri tanpa perlu bantuan orang lain. Ternyata tidak serumit yang saya kira.”",
+      "“Even though I’m not very tech-savvy, MUNU turned out to be very easy to use. The interface is simple. I can now manage my own retirement fund without relying on others. It’s not as hard as I thought.”",
   },
 ];
 
@@ -52,15 +52,15 @@ export function MunuTestimonials() {
   return (
     <section className="w-full bg-background py-20 px-4 md:px-8 lg:px-16">
       <div className="max-w-6xl mx-auto">
-        {/* Judul Section */}
+        {/* Section Title */}
         <div className="text-center mb-12">
-          <h2 className="font-serif text-2xl italic text-primary">Suara Mereka</h2>
+          <h2 className="font-serif text-2xl italic text-primary">What They Say</h2>
           <h1 className="text-4xl md:text-5xl font-bold tracking-tighter text-foreground mt-2">
-            Apa Kata Pengguna <span className="text-primary">MUNU</span>
+            Hear From <span className="text-primary">MUNU</span> Users
           </h1>
         </div>
 
-        {/* Grid Testimoni */}
+        {/* Testimonials Grid */}
         <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
           {testimonials.map((testimonial) => (
             <Card
@@ -71,7 +71,7 @@ export function MunuTestimonials() {
                 <div className="flex items-center gap-4">
                   <Image
                     src={testimonial.avatar}
-                    alt={`Avatar ${testimonial.name}`}
+                    alt={`Avatar of ${testimonial.name}`}
                     width={48}
                     height={48}
                     className="rounded-full"

@@ -27,39 +27,39 @@ interface Service {
 const servicesList: Service[] = [
   {
     icon: Wallet,
-    title: "Pelacakan Pengeluaran",
+    title: "Expense Tracking",
     description:
-      "Catat setiap pemasukan dan pengeluaran Anda dengan mudah untuk melihat ke mana uang Anda pergi.",
+      "Easily record your income and expenses to see where your money goes.",
   },
   {
     icon: Target,
-    title: "Perencanaan Anggaran",
+    title: "Budget Planning",
     description:
-      "Buat anggaran bulanan yang realistis dan patuhi untuk mencapai stabilitas finansial.",
+      "Create realistic monthly budgets and stick to them to achieve financial stability.",
   },
   {
     icon: LineChart,
-    title: "Tujuan Finansial",
+    title: "Financial Goals",
     description:
-      "Tetapkan tujuan finansial jangka pendek dan panjang, lalu lacak progres Anda secara visual.",
+      "Set short and long-term financial goals, then track your progress visually.",
   },
   {
     icon: PieChart,
-    title: "Laporan Keuangan Detail",
+    title: "Detailed Financial Reports",
     description:
-      "Dapatkan wawasan mendalam melalui laporan pengeluaran, pemasukan, dan arus kas yang komprehensif.",
+      "Gain deep insights through comprehensive income, expense, and cash flow reports.",
   },
   {
     icon: Link2,
-    title: "Sinkronisasi Akun",
+    title: "Account Synchronization",
     description:
-      "Hubungkan akun bank Anda dengan aman untuk otomatisasi pencatatan transaksi.",
+      "Securely link your bank accounts for automated transaction tracking.",
   },
   {
     icon: GraduationCap,
-    title: "Edukasi Finansial",
+    title: "Financial Education",
     description:
-      "Tingkatkan literasi keuangan Anda dengan artikel dan tips praktis langsung di aplikasi.",
+      "Improve your financial literacy with in-app articles and practical tips.",
   },
 ];
 
@@ -67,7 +67,6 @@ export function ServicesSection() {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
-
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(true);
 
@@ -101,18 +100,16 @@ export function ServicesSection() {
 
   return (
     <section
-      id="layanan"
+      id="services"
       className="w-full py-12 md:py-24 lg:py-32 bg-background text-foreground"
     >
       <div className="container mx-auto max-w-7xl">
         <div className="flex flex-col items-center justify-center space-y-4 text-center mb-16 px-4">
           <h2 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
-            Semua yang Anda Butuhkan
+            Everything You Need
           </h2>
           <p className="max-w-[700px] text-muted-foreground md:text-xl">
-            Munu menyediakan berbagai fitur canggih yang dirancang untuk
-            memberdayakan Anda dalam mengelola keuangan pribadi secara efektif
-            dan efisien.
+            Munu provides advanced features designed to empower you to manage your personal finances effectively and efficiently.
           </p>
         </div>
 
@@ -172,7 +169,7 @@ export function ServicesSection() {
               </button>
             </div>
             <div className="text-sm text-muted-foreground">
-              Fitur {current} dari {count}
+              Feature {current} of {count}
             </div>
           </div>
         </div>
