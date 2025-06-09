@@ -4,8 +4,8 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { ArrowRight, BrainCircuit, Building, Target, User } from "lucide-react";
+import { TiltButton } from "@/components/gsap/tilt-button";
 
 const roles = [
   {
@@ -141,10 +141,10 @@ export default function AboutPage() {
           Start simplifying your financial life today. Explore our features and see
           how MUNU works for you.
         </p>
-        <Button size="lg" className="group" aria-label="Explore Features">
+        <TiltButton size="lg" className="group" aria-label="Explore Features">
           Explore Features
           <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-        </Button>
+        </TiltButton>
       </div>
     </section>
   );

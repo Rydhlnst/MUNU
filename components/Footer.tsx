@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { Twitter, Github, Linkedin, Mountain } from "lucide-react";
+import { Twitter, Github, Linkedin } from "lucide-react";
+import { TiltIcon } from "./gsap/tilt-icon";
+import { TiltText } from "./gsap/tilt-text";
 
 // Helper component for Footer links to reduce repetition
 // Slightly modified to fit the primary background theme
@@ -27,8 +29,9 @@ export function Footer() {
           {/* Left Column: Logo & Copyright */}
           <div className="md:col-span-4 lg:col-span-3">
             <Link href="/" className="flex items-center" prefetch={false}>
-              <Mountain className="h-7 w-7 text-primary-foreground" />
-              <span className="ml-2 text-xl font-bold tracking-tighter">Munu</span>
+              {/* <Mountain className="h-7 w-7 text-primary-foreground" /> */}
+              <TiltIcon src={"/Gunung2Putih.svg"} height={32} width={32} alt="Icon" className=""/>
+              <TiltText className="ml-2 text-xl font-bold tracking-tighter">Munu</TiltText>
             </Link>
             <p className="mt-4 text-sm text-primary-foreground/80">
               Your all-in-one financial platform for a better future.

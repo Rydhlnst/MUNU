@@ -2,7 +2,7 @@
 
 import React, { useRef, useLayoutEffect } from "react";
 import { gsap } from "gsap";
-import { Button } from "@/components/ui/button";
+import { TiltButton } from "./gsap/tilt-button";
 
 const FONT_LIST = [
   "var(--font-alt)",
@@ -158,21 +158,20 @@ export function WiseStyleHero() {
         </p>
 
         <div className="fade-in flex flex-col sm:flex-row gap-4">
-          <Button
+         <TiltButton
             size="lg"
-            className="bg-primary font-bold hover:bg-primary/90 text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-6 text-white dark:text-white"
-            style={{ fontFamily: "var(--font-sans)" }}
+            className="bg-primary font-bold text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-6 text-white dark:text-white"
           >
             Open an account
-          </Button>
-          <Button
+          </TiltButton>
+
+          <TiltButton
             size="lg"
             variant="outline"
-            className="border-slate-300 dark:border-slate-600 text-black dark:text-white font-bold hover:bg-slate-100 dark:hover:bg-slate-800 text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-6"
-            style={{ fontFamily: "var(--font-sans)" }}
+            className="border-slate-300 hover:bg-white/90 dark:border-slate-600 text-black dark:text-white font-bold text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-6"
           >
             Send money now
-          </Button>
+          </TiltButton>
         </div>
       </div>
     </section>

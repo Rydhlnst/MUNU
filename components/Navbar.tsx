@@ -5,8 +5,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 // import { useSession } from "next-auth/react";
-import { Button } from "@/components/ui/button";
-import { Mountain } from "lucide-react";
+// import { Mountain } from "lucide-react";
 import { MobileNav } from "./mobile-nav";
 import {
   HoverCard,
@@ -28,6 +27,9 @@ import {
 import { HugeiconsIcon } from "@hugeicons/react";
 import { cn } from "@/lib/utils";
 import { signInWithGoogle } from "@/lib/actions";
+import { TiltButton } from "./gsap/tilt-button";
+import { TiltIcon } from "./gsap/tilt-icon";
+import { TiltText } from "./gsap/tilt-text";
 
 // --- Type Definitions & Content (Unchanged) --- //
 type FeatureCategory = "For Beginners" | "For Investors" | "For Professionals";
@@ -172,10 +174,11 @@ export function Navbar() {
       <div className="container mx-auto flex h-full max-w-7xl items-center justify-between px-8 md:px-12 lg:px-16">
         <div className="flex items-center">
           <Link href="/" className="flex items-center" prefetch={false}>
-            <Mountain className="h-6 w-6 text-primary" />
-            <span className="ml-2 text-xl font-bold tracking-tighter text-foreground">
+            {/* <Mountain className="h-6 w-6 text-primary" /> */}
+            <TiltIcon src={"/Gunung2Hijau.svg"}  alt="icon" width={32} height={32}/>
+            <TiltText className="ml-2 text-xl font-bold tracking-tighter text-foreground">
               Munu
-            </span>
+            </TiltText>
           </Link>
         </div>
         <div className="flex items-center gap-8">
@@ -290,7 +293,7 @@ export function Navbar() {
               */}
 
               {/* Ganti dengan tombol Join Waitlist */}
-              <Button onClick={signInWithGoogle}>Join Waitlist</Button>
+              <TiltButton onClick={signInWithGoogle} className="bg-primary">Join Waitlist</TiltButton>
             </div>
             
             <MobileNav />

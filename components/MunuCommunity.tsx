@@ -4,9 +4,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import { Button } from "@/components/ui/button"
 import { DiscordFreeIcons } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
+import { TiltButton } from "./gsap/tilt-button"
 
 const faqs = [
   {
@@ -50,13 +50,11 @@ export function MunuCommunity() {
             Join our community of restaurant owners, managers, and F&B enthusiasts to share tips and get the help you need.
           </p>
           <div>
-            <Button
-              size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
-            >
+            <TiltButton size="lg"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
               <HugeiconsIcon icon={DiscordFreeIcons} className="mr-2 h-5 w-5" />
               Join Discord
-            </Button>
+            </TiltButton>
           </div>
         </div>
 
