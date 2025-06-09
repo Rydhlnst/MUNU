@@ -60,5 +60,32 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
       return session;
     },
+
+    async signIn({ user, account }) {
+      if (!user.email) return false;
+
+      try {
+        // Cek apakah sudah masuk waitlist
+        const existing = await prisma.waitlistUser.findUnique({
+          where: { email: user.email },
+        });
+
+        if (!existing) {
+          await prisma.waitlistUser.create({
+            data: {
+              email: user.email,
+              name: user.name,
+              provider: account?.provider || "unknown",
+              image: user.image,
+            },
+          });
+        }
+      } catch (error) {
+        console.error("Gagal menyimpan ke waitlist:", error);
+        return false;
+      }
+
+      return true;
+    },
   },
 });

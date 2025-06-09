@@ -9,7 +9,7 @@ const prisma = new PrismaClient();
 
 // --- SIGN IN DENGAN GOOGLE ---
 export async function signInWithGoogle() {
-  await signIn('google', { redirectTo: '/dashboard' });
+  await signIn('google', { redirectTo: '/thanks' });
 }
 
 export async function signInWithGithub() {

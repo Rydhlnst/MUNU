@@ -42,6 +42,15 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
+model WaitlistUser {
+  id       String   @id @default(cuid())
+  email    String   @unique
+  name     String?
+  provider String // google, github, etc
+  image    String?
+  joinedAt DateTime @default(now())
+}
+
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique

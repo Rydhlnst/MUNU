@@ -1,5 +1,3 @@
-// src/components/MunuCommunity.tsx
-
 import {
   Accordion,
   AccordionContent,
@@ -12,29 +10,29 @@ import { HugeiconsIcon } from "@hugeicons/react"
 
 const faqs = [
   {
-    question: "Apa itu MUNU?",
+    question: "What is MUNU?",
     answer:
-      "MUNU adalah partner digital Anda untuk industri F&B. Kami membantu Anda membuat menu digital interaktif dalam hitungan detik, mempublikasikannya dengan satu klik, dan mengelola pembaruan secara otomatis—tanpa perlu coding sama sekali.",
+      "MUNU is your digital partner for the F&B industry. We help you create interactive digital menus in seconds, publish them with one click, and manage updates automatically—no coding required.",
   },
   {
-    question: "Apakah saya bisa mencoba MUNU secara gratis?",
+    question: "Can I try MUNU for free?",
     answer:
-      "Tentu saja! MUNU menawarkan paket gratis yang memungkinkan Anda merasakan fitur-fitur dasar kami. Untuk fungsionalitas yang lebih canggih, kami memiliki paket berbayar yang terjangkau untuk mengembangkan bisnis Anda.",
+      "Absolutely! MUNU offers a free plan that lets you experience our core features. For advanced capabilities, we offer affordable paid plans to help you grow your business.",
   },
   {
-    question: "Mengapa bisnis F&B saya memerlukan menu digital?",
+    question: "Why does my F&B business need a digital menu?",
     answer:
-      "Menu digital mengurangi biaya cetak, memudahkan pembaruan promo atau harga, memberikan pengalaman modern bagi pelanggan, dan memungkinkan integrasi dengan sistem pemesanan online untuk efisiensi yang lebih tinggi.",
+      "Digital menus reduce printing costs, simplify price and promotion updates, provide a modern experience for customers, and enable integration with online ordering systems for greater efficiency.",
   },
   {
-    question: "Bagaimana cara membuat menu digital dengan MUNU?",
+    question: "How do I create a digital menu with MUNU?",
     answer:
-      "Sangat mudah! Cukup daftar, pilih template yang Anda suka, masukkan informasi menu dan hidangan Anda, lalu publikasikan. Seluruh proses dirancang agar cepat dan intuitif, bahkan untuk pemula.",
+      "It's super easy! Just sign up, choose a template you like, enter your menu details, and publish. The entire process is designed to be quick and intuitive, even for beginners.",
   },
   {
-    question: "Apakah saya perlu keahlian teknis untuk menggunakan MUNU?",
+    question: "Do I need technical skills to use MUNU?",
     answer:
-      "Tidak sama sekali. Platform MUNU dirancang untuk semua orang. Jika Anda bisa menggunakan media sosial, Anda pasti bisa menggunakan MUNU untuk membuat menu digital yang profesional.",
+      "Not at all. MUNU is designed for everyone. If you can use social media, you can definitely use MUNU to create a professional digital menu.",
   },
 ]
 
@@ -42,14 +40,14 @@ export function MunuCommunity() {
   return (
     <section className="w-full bg-background py-20 px-4 md:px-8 lg:px-16 min-h-screen flex items-center justify-center">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
-        {/* Kolom Kiri: Judul dan Tombol CTA */}
+        {/* Left Column: Title and CTA Button */}
         <div className="flex flex-col space-y-6">
-          <h2 className="font-serif text-2xl italic text-primary">Komunitas</h2>
+          <h2 className="font-serif text-2xl italic text-primary">Community</h2>
           <h1 className="text-4xl md:text-5xl font-bold tracking-tighter text-foreground">
-            Bantuan apapun yang Anda butuhkan, kami siap membantu
+            Whatever support you need, we&apo;re here for you
           </h1>
           <p className="text-muted-foreground text-lg">
-            Bergabunglah dengan komunitas para pemilik restoran, manajer, dan pegiat F&B lainnya untuk berbagi tips dan mendapatkan dukungan.
+            Join our community of restaurant owners, managers, and F&B enthusiasts to share tips and get the help you need.
           </p>
           <div>
             <Button
@@ -57,12 +55,12 @@ export function MunuCommunity() {
               className="bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
             >
               <HugeiconsIcon icon={DiscordFreeIcons} className="mr-2 h-5 w-5" />
-              Gabung Discord
+              Join Discord
             </Button>
           </div>
         </div>
 
-        {/* Kolom Kanan: FAQ dengan Accordion */}
+        {/* Right Column: FAQ with Accordion */}
         <div className="w-full">
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq, index) => (

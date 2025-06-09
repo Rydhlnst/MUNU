@@ -4,7 +4,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { useSession, signOut } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { Mountain } from "lucide-react";
 import { MobileNav } from "./mobile-nav";
@@ -27,6 +27,7 @@ import {
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { cn } from "@/lib/utils";
+import { signInWithGoogle } from "@/lib/actions";
 
 // --- Type Definitions & Content (Unchanged) --- //
 type FeatureCategory = "For Beginners" | "For Investors" | "For Professionals";
@@ -127,7 +128,7 @@ const productItems = [
 
 // --- Main Navbar Component --- //
 export function Navbar() {
-  const { status } = useSession();
+  // const { status } = useSession();
   const [scrolled, setScrolled] = useState(false);
 
   const groupedFeatures = features.reduce<Record<FeatureCategory, FeatureItem[]>>(
@@ -253,7 +254,7 @@ export function Navbar() {
                 Pricing
               </Link>
               <Link
-                href="/#about"
+                href="/our-mission"
                 className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted focus:outline-none"
               >
                 Our Mission
@@ -261,6 +262,8 @@ export function Navbar() {
             </nav>
           <div className="flex items-center gap-4">
             <div className="hidden items-center gap-3 md:flex">
+              {/* Hide login-related buttons */}
+              {/* 
               {status === "loading" && (
                 <div className="h-10 w-44 animate-pulse rounded-md bg-muted" />
               )}
@@ -284,9 +287,15 @@ export function Navbar() {
                   <Button onClick={() => signOut()}>Logout</Button>
                 </>
               )}
+              */}
+
+              {/* Ganti dengan tombol Join Waitlist */}
+              <Button onClick={signInWithGoogle}>Join Waitlist</Button>
             </div>
+            
             <MobileNav />
           </div>
+
         </div>
 
       </div>

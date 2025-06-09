@@ -80,7 +80,7 @@ export default async function RootLayout({
      <SessionProvider session={session}>
       <html lang="en" suppressHydrationWarning>
         
-        <body className={cn("font-sans", chivoMono.variable, dmSans.variable, plusJakarta.variable, inter.variable)}>
+        <body className={cn("font-sans", chivoMono.variable, dmSans.variable, plusJakarta.variable, inter.variable)} suppressHydrationWarning>
           <ThemeProvider attribute="class"
             defaultTheme="system"
             enableSystem
