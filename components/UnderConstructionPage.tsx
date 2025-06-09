@@ -7,7 +7,7 @@ const UnderConstructionPage = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center text-center px-4 py-16 bg-background text-foreground">
       <Image
-        src="/onbuild.svg"
+        src="/onBuild.svg"
         alt="Page Under Construction"
         height={400}
         width={400}
