@@ -12,6 +12,10 @@ export async function signInWithGoogle() {
   await signIn('google', { redirectTo: '/dashboard' });
 }
 
+export async function signInWithGithub() {
+  await signIn('github', { redirectTo: '/dashboard' });
+}
+
 // --- LOGOUT ---
 export async function logout() {
   await signOut({ redirectTo: '/' });

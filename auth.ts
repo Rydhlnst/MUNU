@@ -1,9 +1,8 @@
-// app/api/auth/[...nextauth]/route.ts atau auth.ts
-
 import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { PrismaClient } from '@/lib/generated/prisma';
 import Google from "next-auth/providers/google";
+import Github from "next-auth/providers/github";
 import Credentials from "next-auth/providers/credentials";
 
 const prisma = new PrismaClient();
@@ -15,6 +14,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     Google({
       clientId: process.env.AUTH_GOOGLE_ID!,
       clientSecret: process.env.AUTH_GOOGLE_SECRET!,
+    }),
+
+    Github({
+      clientId: process.env.AUTH_GITHUB_ID!,
+      clientSecret: process.env.AUTH_GITHUB_SECRET!,
     }),
 
     Credentials({
