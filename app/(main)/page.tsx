@@ -1,7 +1,7 @@
 import { MunuLandingPage } from "@/components/LandingPage";
 export default function Home() {
   return (
-    <div>
+    <div suppressHydrationWarning>
       <MunuLandingPage/>
     </div>
   );

@@ -1,8 +1,11 @@
+"use client";
+
 import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Menu, Mountain } from "lucide-react";
+import { signInWithGoogle } from "@/lib/actions";
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,14 +15,14 @@ export function MobileNav() {
       <SheetTrigger asChild>
         <Button variant="outline" size="icon" className="md:hidden">
           <Menu className="h-6 w-6" />
-          <span className="sr-only">Buka Menu</span>
+          <span className="sr-only">Open Menu</span>
         </Button>
       </SheetTrigger>
 
       <SheetContent side="left" className="w-full sm:w-full p-0">
         <nav className="flex flex-col gap-6 text-lg font-medium px-6 py-10">
           <Link
-            href="#"
+            href="/"
             className="flex items-center gap-2 text-lg font-semibold"
             onClick={() => setIsOpen(false)}
           >
@@ -28,32 +31,39 @@ export function MobileNav() {
           </Link>
 
           <Link
-            href="/fitur"
+            href="/products"
             className="text-muted-foreground transition-colors hover:text-foreground"
             onClick={() => setIsOpen(false)}
           >
-            Fitur
-          </Link>
-          <Link
-            href="/harga"
-            className="text-muted-foreground transition-colors hover:text-foreground"
-            onClick={() => setIsOpen(false)}
-          >
-            Harga
-          </Link>
-          <Link
-            href="/tentang"
-            className="text-muted-foreground transition-colors hover:text-foreground"
-            onClick={() => setIsOpen(false)}
-          >
-            Tentang Kami
+            Products
           </Link>
 
-          <Button
+          <Link
+            href="/features"
+            className="text-muted-foreground transition-colors hover:text-foreground"
             onClick={() => setIsOpen(false)}
-            className="mt-6 w-full"
           >
-            Masuk
+            Features
+          </Link>
+
+          <Link
+            href="/pricing"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+            onClick={() => setIsOpen(false)}
+          >
+            Pricing
+          </Link>
+
+          <Link
+            href="/our-mission"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+            onClick={() => setIsOpen(false)}
+          >
+            Our Mission
+          </Link>
+
+          <Button onClick={signInWithGoogle} className="mt-6 w-full">
+            Join Waitlist
           </Button>
         </nav>
       </SheetContent>
