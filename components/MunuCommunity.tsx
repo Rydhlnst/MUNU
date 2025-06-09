@@ -44,7 +44,7 @@ export function MunuCommunity() {
         <div className="flex flex-col space-y-6">
           <h2 className="font-serif text-2xl italic text-primary">Community</h2>
           <h1 className="text-4xl md:text-5xl font-bold tracking-tighter text-foreground">
-            Whatever support you need, we&apo;re here for you
+            Whatever support you need, we&apos;re here for you
           </h1>
           <p className="text-muted-foreground text-lg">
             Join our community of restaurant owners, managers, and F&B enthusiasts to share tips and get the help you need.
