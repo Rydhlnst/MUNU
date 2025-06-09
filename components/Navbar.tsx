@@ -50,7 +50,7 @@ const features: FeatureItem[] = [
     icon: BankFreeIcons,
     iconColor: "text-green-700",
     bgColor: "bg-green-100",
-    href: "/features/budgeting",
+    href: "/features",
   },
   {
     category: "For Beginners",
@@ -59,7 +59,7 @@ const features: FeatureItem[] = [
     icon: AnalyticsIcon,
     iconColor: "text-sky-700",
     bgColor: "bg-sky-100",
-    href: "/features/education",
+    href: "/features",
   },
   {
     category: "For Investors",
@@ -68,7 +68,7 @@ const features: FeatureItem[] = [
     icon: SunglassesFreeIcons,
     iconColor: "text-orange-700",
     bgColor: "bg-orange-100",
-    href: "/features/dividend-tracker",
+    href: "/features",
   },
   {
     category: "For Investors",
@@ -77,7 +77,7 @@ const features: FeatureItem[] = [
     icon: RefreshFreeIcons,
     iconColor: "text-indigo-700",
     bgColor: "bg-indigo-100",
-    href: "/features/rebalancing",
+    href: "/features",
   },
   {
     category: "For Professionals",
@@ -86,7 +86,7 @@ const features: FeatureItem[] = [
     icon: DocumentAttachmentIcon,
     iconColor: "text-rose-700",
     bgColor: "bg-rose-100",
-    href: "/features/auto-reports",
+    href: "/features",
   },
   {
     category: "For Professionals",
@@ -95,7 +95,7 @@ const features: FeatureItem[] = [
     icon: CodeFreeIcons,
     iconColor: "text-slate-700",
     bgColor: "bg-slate-100",
-    href: "/features/api",
+    href: "/features",
   },
 ];
 
@@ -104,25 +104,25 @@ const productItems = [
     name: "Portfolio Dashboard",
     description: "Manage all your assets with a structured overview.",
     icon: DashboardSquareEditFreeIcons,
-    href: "/dashboard",
+    href: "/products",
   },
   {
     name: "Investment Simulator",
     description: "Calculate potential returns from different scenarios.",
     icon: PieChartFreeIcons,
-    href: "/simulator",
+    href: "/products",
   },
   {
     name: "Stock & Crypto Market",
     description: "Monitor stock and crypto asset movements in real-time.",
     icon: Chart01FreeIcons,
-    href: "/market",
+    href: "/products",
   },
   {
     name: "AI Financial Features",
     description: "Use AI to gain insights and financial advice.",
     icon: MagicWand01FreeIcons,
-    href: "/ai",
+    href: "/products",
   },
 ];
 

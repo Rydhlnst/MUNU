@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Check, X } from "lucide-react";
 
-const roles = ["personal", "ukm", "investor"] as const;
+const roles = ["personal", "business", "investor"] as const;
 type Role = typeof roles[number];
 
 type Plan = {
@@ -130,10 +130,10 @@ const pricingData: Record<Role, PricingData> = {
     ],
   },
 
-  ukm: {
+  business: { // Renamed from "ukm"
     monthly: [
       {
-        name: "UKM Free",
+        name: "Business Free",
         price: "Free",
         description: "Basic tools for early stage business tracking.",
         features: [
@@ -144,7 +144,7 @@ const pricingData: Record<Role, PricingData> = {
         highlighted: false,
       },
       {
-        name: "UKM Pro",
+        name: "Business Pro",
         price: "Rp 89.000",
         description: "For small businesses managing finance, stock, and invoices.",
         features: [
@@ -159,7 +159,7 @@ const pricingData: Record<Role, PricingData> = {
         highlighted: false,
       },
       {
-        name: "UKM Max",
+        name: "Business Max",
         price: "Rp 179.000",
         description: "Advanced tools for growing and scaling your business.",
         features: [
@@ -177,7 +177,7 @@ const pricingData: Record<Role, PricingData> = {
     ],
     yearly: [
       {
-        name: "UKM Free",
+        name: "Business Free",
         price: "Free",
         description: "Basic tools for early stage business tracking.",
         features: [
@@ -188,7 +188,7 @@ const pricingData: Record<Role, PricingData> = {
         highlighted: false,
       },
       {
-        name: "UKM Pro",
+        name: "Business Pro",
         price: "Rp 890.000",
         description: "For small businesses managing finance, stock, and invoices.",
         features: [
@@ -203,7 +203,7 @@ const pricingData: Record<Role, PricingData> = {
         highlighted: false,
       },
       {
-        name: "UKM Max",
+        name: "Business Max",
         price: "Rp 1.790.000",
         description: "Advanced tools for growing and scaling your business.",
         features: [
@@ -220,6 +220,7 @@ const pricingData: Record<Role, PricingData> = {
       },
     ],
   },
+
 
   investor: {
     monthly: [
@@ -313,7 +314,7 @@ const pricingData: Record<Role, PricingData> = {
   },
 };
 
-const featureComparisonData: Record<"personal" | "ukm" | "investor", FeatureComparison[]> = {
+const featureComparisonData: Record<"personal" | "business" | "investor", FeatureComparison[]> = {
   personal: [
     {
       category: "Core Features",
@@ -330,7 +331,7 @@ const featureComparisonData: Record<"personal" | "ukm" | "investor", FeatureComp
       ],
     },
   ],
-  ukm: [
+  business: [
     {
       category: "Business Tools",
       features: [
@@ -382,14 +383,14 @@ const faqData: Record<Role, { question: string; answer: string }[]> = {
       answer: "Yes, it includes auto reminders for bill payments.",
     },
   ],
-  ukm: [
+  business: [
     {
       question: "Can I manage stock and invoice together?",
-      answer: "Absolutely, UKM Pro includes both features.",
+      answer: "Absolutely, Business Pro includes both features.",
     },
     {
       question: "Can I export reports?",
-      answer: "Yes. UKM Pro supports PDF & CSV export.",
+      answer: "Yes. Business Pro supports PDF & CSV export.",
     },
   ],
   investor: [
