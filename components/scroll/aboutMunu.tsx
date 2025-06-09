@@ -54,12 +54,9 @@ export default function MunuScrollPage() {
         className="relative h-[200vh] bg-primary text-white dark:bg-primary dark:text-white"
       >
         <div
-          ref={pinTargetRef}
-          style={{
-            '--navbar-height': `${navbarHeight}px`,
-          } as React.CSSProperties}
-          className="w-full h-[calc(100vh-var(--navbar-height))] relative flex items-center justify-center px-6 text-center"
-        >
+            ref={pinTargetRef}
+            className="w-full min-h-[calc(100dvh-80px)] relative flex items-center justify-center px-6 text-center"
+          >
           <div className="transform -translate-y-6 max-w-4xl">
             <h1
               ref={headingRef}
@@ -69,7 +66,7 @@ export default function MunuScrollPage() {
             </h1>
             <p
               ref={subTextRef}
-              className="max-w-2xl mx-auto text-lg md:text-xl text-white/80 dark:text-white/70"
+              className="max-w-[360px] md:max-w-2xl mx-auto text-lg md:text-xl text-white/80 dark:text-white/70"
             >
               Your all-in-one finance platform to track, save, invest, and grow — globally.
             </p>
@@ -77,9 +74,9 @@ export default function MunuScrollPage() {
         </div>
       </section>
 
-      <section className="h-screen bg-primary dark:bg-primary flex items-center justify-center">
-        <div className="w-full max-w-6xl mx-auto px-8">
-          <Skeleton className="w-full aspect-video rounded-xl shadow-lg" />
+      <section className="h-screen  bg-primary dark:bg-primary flex items-center justify-center overflow-clip">
+        <div className="w-full max-w-6xl mx-auto px-8 isolate">
+          <Skeleton className="w-full aspect-[16/9] rounded-xl shadow-lg border-none bg-muted/20 backface-hidden will-change-transform" />
         </div>
       </section>
     </>

@@ -101,9 +101,9 @@ export function ServicesSection() {
   return (
     <section
       id="services"
-      className="w-full py-12 md:py-24 lg:py-32 bg-background text-foreground"
+      className="w-full px-8 md:px-12 lg:px-16 py-12 md:py-24 lg:py-32 bg-background text-foreground"
     >
-      <div className="container mx-auto max-w-7xl">
+      <div className="container mx-auto max-w-6xl">
         <div className="flex flex-col items-center justify-center space-y-4 text-center mb-16 px-4">
           <h2 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
             Everything You Need

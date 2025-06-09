@@ -19,7 +19,7 @@ export function Footer() {
   return (
     // CHANGE 1: Use bg-primary and proper text colors
     <footer className="w-full border-t border-primary-foreground/10 bg-primary text-primary-foreground">
-      <div className="container mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div className="container mx-auto max-w-7xl px-8 py-12 md:px-12 lg:px-16">
         
         {/* Top Section: Logo and Link Columns */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-12">

@@ -38,7 +38,7 @@ const faqs = [
 
 export function MunuCommunity() {
   return (
-    <section className="w-full bg-background py-20 px-4 md:px-8 lg:px-16 min-h-screen flex items-center justify-center">
+    <section className="w-full bg-background py-20 px-8 md:px-12 lg:px-16 min-h-screen flex items-center justify-center">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
         {/* Left Column: Title and CTA Button */}
         <div className="flex flex-col space-y-6">

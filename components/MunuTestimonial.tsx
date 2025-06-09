@@ -50,7 +50,7 @@ const testimonials = [
 
 export function MunuTestimonials() {
   return (
-    <section className="w-full bg-background py-20 px-4 md:px-8 lg:px-16">
+    <section className="w-full bg-background py-20 px-8 md:px-12 lg:px-16">
       <div className="max-w-6xl mx-auto">
         {/* Section Title */}
         <div className="text-center mb-12">

@@ -169,7 +169,7 @@ export function Navbar() {
           : "h-20 border-b border-transparent bg-transparent"
       )}
     >
-      <div className="container mx-auto flex h-full max-w-7xl items-center justify-between  px-4 sm:px-6">
+      <div className="container mx-auto flex h-full max-w-7xl items-center justify-between px-8 md:px-12 lg:px-16">
         <div className="flex items-center">
           <Link href="/" className="flex items-center" prefetch={false}>
             <Mountain className="h-6 w-6 text-primary" />
