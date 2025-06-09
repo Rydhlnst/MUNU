@@ -1,5 +1,4 @@
-// src/components/FeedbackWidget.tsx
-"use client";
+"use client"
 
 import React, { useState, useEffect } from "react";
 import {
@@ -18,11 +17,11 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
 const upcomingFeatures = [
-  { id: "dark-mode", label: "Mode Gelap (Dark Mode)" },
-  { id: "integrasi-broker", label: "Integrasi dengan Pialang Saham" },
-  { id: "laporan-pajak", label: "Laporan Pajak Otomatis" },
-  { id: "notifikasi-harga", label: "Notifikasi Harga Saham/Aset" },
-  { id: "multi-currency", label: "Dukungan Multi-Mata Uang" },
+  { id: "dark-mode", label: "Dark Mode" },
+  { id: "integrasi-broker", label: "Stock Broker Integration" },
+  { id: "laporan-pajak", label: "Automatic Tax Reports" },
+  { id: "notifikasi-harga", label: "Asset Price Notifications" },
+  { id: "multi-currency", label: "Multi-Currency Support" },
 ];
 
 export function FeedbackWidget() {
@@ -34,14 +33,26 @@ export function FeedbackWidget() {
     setSelectedFeatures((prev) => ({ ...prev, [featureId]: !prev[featureId] }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const feedbackData = {
       wantsFeatures: Object.keys(selectedFeatures).filter((key) => selectedFeatures[key]),
       suggestion: additionalSuggestion,
       submittedAt: new Date().toISOString(),
     };
-    console.log("Feedback Diterima:", feedbackData);
-    setIsOpen(false);
+
+    try {
+      await fetch("/api/send-feedback", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(feedbackData),
+      });
+
+      setIsOpen(false);
+    } catch (error) {
+      console.error("Failed to send feedback:", error);
+    }
   };
 
   useEffect(() => {
@@ -94,16 +105,16 @@ export function FeedbackWidget() {
         </SheetClose>
 
         <SheetHeader className="text-left px-6 pt-6">
-          <SheetTitle>Beri Kami Masukan</SheetTitle>
+          <SheetTitle>Send Us Your Feedback</SheetTitle>
           <SheetDescription className="text-muted-foreground mt-1">
-            Kami ingin mendengar pendapat Anda! Fitur apa yang paling Anda nantikan?
-            Beri tahu kami agar MUNU bisa menjadi lebih baik.
+            We&apos;d love to hear your thoughts! Which features are you most excited about?
+            Let us know so we can make MUNU even better.
           </SheetDescription>
         </SheetHeader>
 
         <div className="flex-grow overflow-y-auto px-6 py-6 space-y-8">
           <div>
-            <h4 className="font-semibold mb-3">Fitur yang paling dinantikan</h4>
+            <h4 className="font-semibold mb-3">Most Anticipated Features</h4>
             <div className="space-y-4">
               {upcomingFeatures.map((feature) => (
                 <div key={feature.id} className="flex items-center gap-3">
@@ -122,11 +133,11 @@ export function FeedbackWidget() {
 
           <div>
             <Label htmlFor="suggestion" className="font-semibold block mb-2">
-              Punya saran atau ide lain?
+              Any other ideas or suggestions?
             </Label>
             <Textarea
               id="suggestion"
-              placeholder="Tuliskan ide brilian Anda di sini..."
+              placeholder="Write your brilliant idea here..."
               className="w-full"
               rows={4}
               value={additionalSuggestion}
@@ -137,7 +148,7 @@ export function FeedbackWidget() {
 
         <SheetFooter className="px-6 pb-6">
           <Button onClick={handleSubmit} type="submit" className="w-full">
-            Kirim Feedback
+            Submit Feedback
           </Button>
         </SheetFooter>
       </SheetContent>
