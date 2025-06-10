@@ -4,8 +4,9 @@ import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Menu, Mountain } from "lucide-react";
+import { Menu } from "lucide-react";
 import { signInWithGoogle } from "@/lib/actions";
+import Image from "next/image";
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +27,7 @@ export function MobileNav() {
             className="flex items-center gap-2 text-lg font-semibold"
             onClick={() => setIsOpen(false)}
           >
-            <Mountain className="h-6 w-6 text-green-600" />
+            <Image src={"/Gunung2Hijau.svg"} alt="icon" width={32} height={32}/>
             <span className="tracking-tighter">Munu</span>
           </Link>
 

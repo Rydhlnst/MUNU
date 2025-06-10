@@ -16,11 +16,11 @@ export const metadata: Metadata = {
   },
   description: "Aplikasi keuangan pribadi modern berbasis web untuk pelacakan pengeluaran, perencanaan anggaran, dan eksekusi strategi investasi & trading.",
   keywords: ["manajemen keuangan", "personal finance", "investasi", "crypto", "budgeting", "AI financial advisor", "delta neutral trading"],
-  metadataBase: new URL("https://munu.id"), // ganti sesuai domain final
+  metadataBase: new URL("https://munu.finance"),
   openGraph: {
     title: "MUNU – Kontrol Uangmu Lebih Pintar",
     description: "Kelola keuangan pribadi & investasi dengan AI. Pelacak pengeluaran, anggaran, dan trading netral dalam satu dashboard.",
-    url: "https://munu.id",
+    url: "https://munu.finance",
     siteName: "MUNU",
     images: [
       {
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     creator: "@akunmunu", 
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/favicon.svg",
   },
 };
 
