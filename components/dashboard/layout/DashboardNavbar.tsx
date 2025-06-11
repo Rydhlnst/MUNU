@@ -6,7 +6,6 @@ import {
   SunIconFreeIcons,
   Moon01FreeIcons,
   CreditCardFreeIcons,
-  Home01FreeIcons,
   PlusSignIcon,
   QuestionFreeIcons,
   Wrench01FreeIcons,
@@ -30,6 +29,8 @@ import {
   DropdownMenuSubTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "next-themes";
+import Link from "next/link";
+import Image from "next/image";
 
 export function DashboardNavbar() {
   const { setTheme } = useTheme();
@@ -38,10 +39,9 @@ export function DashboardNavbar() {
     <header className="flex items-center justify-between px-4 py-3 border-b bg-background min-h-[64px]">
       {/* Left: Brand / Menu */}
       <div className="flex items-center gap-4">
-        <Button variant="ghost" size="icon" className="md:hidden">
-          <HugeiconsIcon icon={Home01FreeIcons} className="w-5 h-5 stroke-[1.5]" />
-        </Button>
-        <span className="text-lg font-semibold hidden md:block">MUNU</span>
+        <Link href={"/dashboard"}>
+          <Image src={"/Gunung2Hijau.svg"} alt="Icon" width={32} height={32}/>
+        </Link>
       </div>
 
       {/* Right: Action Items */}

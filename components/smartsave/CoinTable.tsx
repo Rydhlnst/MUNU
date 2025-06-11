@@ -61,34 +61,35 @@ export default function CoinTableImproved() {
     fetchCoins();
   }, []);
 
-  const renderSkeleton = () => (
+    const renderSkeleton = () => (
     <>
-      {Array(INITIAL_DISPLAY_COUNT)
+        {Array(INITIAL_DISPLAY_COUNT)
         .fill(0)
         .map((_, index) => (
-          <TableRow key={`skeleton-${index}`}>
+            <TableRow key={`skeleton-${index}`}>
             <TableCell>
-              <div className="flex items-center gap-3">
-                <Skeleton className="h-6 w-6 rounded-full" />
-                <Skeleton className="h-4 w-24" />
-              </div>
+                <div className="flex items-center gap-3">
+                {/* Tambahkan kelas warna abu-abu di sini */}
+                <Skeleton className="h-6 w-6 rounded-full bg-gray-200" />
+                <Skeleton className="h-4 w-24 bg-gray-200" />
+                </div>
             </TableCell>
             <TableCell>
-              <Skeleton className="h-4 w-12" />
+                <Skeleton className="h-4 w-12 bg-gray-200" />
             </TableCell>
             <TableCell>
-              <Skeleton className="h-4 w-32" />
+                <Skeleton className="h-4 w-32 bg-gray-200" />
             </TableCell>
             <TableCell className="text-right">
-              <Skeleton className="h-4 w-20" />
+                <Skeleton className="h-4 w-20 bg-gray-200" />
             </TableCell>
             <TableCell className="text-right">
-              <Skeleton className="h-9 w-24" />
+                <Skeleton className="h-9 w-24 bg-gray-200" />
             </TableCell>
-          </TableRow>
+            </TableRow>
         ))}
     </>
-  );
+    );
 
   const handleCreatePlanClick = (coin: Coin) => {
     setSelectedCoin(coin);
