@@ -27,9 +27,9 @@ import {
 import { HugeiconsIcon } from "@hugeicons/react";
 import { cn } from "@/lib/utils";
 import { signInWithGoogle } from "@/lib/actions";
-import { TiltButton } from "./gsap/tilt-button";
-import { TiltIcon } from "./gsap/tilt-icon";
-import { TiltText } from "./gsap/tilt-text";
+import { TiltButton } from "./motion/tilt-button";
+import { TiltIcon } from "./motion/tilt-icon";
+import { TiltText } from "./motion/tilt-text";
 
 // --- Type Definitions & Content (Unchanged) --- //
 type FeatureCategory = "For Beginners" | "For Investors" | "For Professionals";

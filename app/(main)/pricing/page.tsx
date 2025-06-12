@@ -16,6 +16,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Check, X } from "lucide-react";
+import { motion } from "framer-motion";
 
 const roles = ["personal", "business", "investor"] as const;
 type Role = typeof roles[number];
@@ -409,40 +410,61 @@ export default function MunuPricingPage() {
   return (
     <div className="flex flex-col items-center bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 p-8">
       <div className="max-w-7xl w-full mx-auto">
-        <header className="text-center my-12">
+        <motion.header
+          className="text-center my-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.5 }}
+        >
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
             Choose the Right Plan for You
           </h1>
           <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Start for free, then select the plan that fits each stage of your growth.
           </p>
-        </header>
+        </motion.header>
 
-       <Tabs defaultValue="personal" className="max-w-7xl mx-auto mb-12">
-          <TabsList className="mx-auto h-auto rounded-lg bg-muted p-1">
-            {roles.map((role) => (
-              <TabsTrigger
-                key={role}
-                value={role}
-                className="capitalize rounded-md px-4 text-muted-foreground transition-all duration-300 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
-              >
-                {role}
-              </TabsTrigger>
-            ))}
-          </TabsList>
+
+       <Tabs defaultValue="personal" className="max-w-7xl mx-auto mb-12 flex items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.4 }}
+          >
+            <TabsList className="mx-auto h-auto rounded-lg bg-muted p-1">
+              {roles.map((role) => (
+                <TabsTrigger
+                  key={role}
+                  value={role}
+                  className="capitalize rounded-md px-4 text-muted-foreground transition-all duration-300 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
+                >
+                  {role}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </motion.div>
           
           {roles.map((role) => (
             <TabsContent key={role} value={role}>
               <Tabs defaultValue="monthly" className="w-full mt-3">
-                <TabsList className="grid grid-cols-2 w-fit max-w-md mx-auto">
-                  <TabsTrigger value="monthly">Monthly</TabsTrigger>
-                  <TabsTrigger value="yearly">
-                    Yearly
-                    <Badge variant="secondary" className="ml-2 bg-green-200 text-green-800 dark:bg-green-700 dark:text-green-100">
-                      Save 20%
-                    </Badge>
-                  </TabsTrigger>
-                </TabsList>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    viewport={{ once: true, amount: 0.4 }}
+                >
+                  <TabsList className="grid grid-cols-2 w-fit max-w-md mx-auto">
+                    <TabsTrigger value="monthly">Monthly</TabsTrigger>
+                    <TabsTrigger value="yearly">
+                      Yearly
+                      <Badge variant="secondary" className="ml-2 bg-green-200 text-green-800 dark:bg-green-700 dark:text-green-100">
+                        Save 20%
+                      </Badge>
+                    </TabsTrigger>
+                  </TabsList>
+                </motion.div>
 
                 <TabsContent value="monthly">
                   <PricingCards plans={pricingData[role].monthly} period="monthly" />
@@ -453,7 +475,13 @@ export default function MunuPricingPage() {
               </Tabs>
 
               {/* Feature Comparison */}
-              <section className="my-20">
+              <motion.section
+                  className="my-20"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  viewport={{ once: true, amount: 0.3 }}
+                >
                 <h2 className="text-3xl font-bold text-center mb-10">
                   Detailed Feature Comparison
                 </h2>
@@ -498,10 +526,16 @@ export default function MunuPricingPage() {
                     </Table>
                   </CardContent>
                 </Card>
-              </section>
+              </motion.section>
 
               {/* FAQ Section */}
-              <section className="my-20">
+              <motion.section
+                className="my-20"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                viewport={{ once: true, amount: 0.3 }}
+              >
                 <h2 className="text-3xl font-bold text-center mb-10">
                   Frequently Asked Questions
                 </h2>
@@ -513,7 +547,8 @@ export default function MunuPricingPage() {
                     </AccordionItem>
                   ))}
                 </Accordion>
-              </section>
+              </motion.section>
+
             </TabsContent>
           ))}
         </Tabs>
@@ -525,39 +560,51 @@ export default function MunuPricingPage() {
 function PricingCards({ plans, period }: { plans: Plan[]; period: string }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 w-fit mx-auto justify-items-center">
-      {plans.map((plan) => (
-        <Card
+      {plans.map((plan, index) => (
+        <motion.div
           key={plan.name}
-          className={`flex flex-col w-full min-w-sm max-w-sm ${
-            plan.highlighted ? "border-2 border-primary dark:border-primary" : ""
-          }`}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            delay: index * 0.1,
+            duration: 0.5,
+            ease: "easeOut",
+          }}
+          viewport={{ once: true, amount: 0.4 }}
+          className="w-full min-w-sm max-w-sm"
         >
-          <CardHeader>
-            <CardTitle className="text-2xl font-semibold">{plan.name}</CardTitle>
-            <CardDescription>{plan.description}</CardDescription>
-          </CardHeader>
-          <CardContent className="flex-grow">
-            <div className="mb-6">
-              <span className="text-4xl font-bold">{plan.price}</span>
-              <span className="text-gray-500 dark:text-gray-400">
-                /{period === "monthly" ? "mo" : "yr"}
-              </span>
-            </div>
-            <ul className="space-y-3">
-              {plan.features.map((feature: string, index: number) => (
-                <li key={index} className="flex items-start">
-                  <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-1" />
-                  <span className="text-gray-700 dark:text-gray-300">{feature}</span>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-          <CardFooter>
-            <Button className="w-full" variant={plan.highlighted ? "default" : "outline"}>
-              {plan.cta}
-            </Button>
-          </CardFooter>
-        </Card>
+          <Card
+            className={`flex flex-col h-full ${
+              plan.highlighted ? "border-2 border-primary dark:border-primary" : ""
+            }`}
+          >
+            <CardHeader>
+              <CardTitle className="text-2xl font-semibold">{plan.name}</CardTitle>
+              <CardDescription>{plan.description}</CardDescription>
+            </CardHeader>
+            <CardContent className="flex-grow">
+              <div className="mb-6">
+                <span className="text-4xl font-bold">{plan.price}</span>
+                <span className="text-gray-500 dark:text-gray-400">
+                  /{period === "monthly" ? "mo" : "yr"}
+                </span>
+              </div>
+              <ul className="space-y-3">
+                {plan.features.map((feature, index) => (
+                  <li key={index} className="flex items-start">
+                    <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-1" />
+                    <span className="text-gray-700 dark:text-gray-300">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+            <CardFooter>
+              <Button className="w-full" variant={plan.highlighted ? "default" : "outline"}>
+                {plan.cta}
+              </Button>
+            </CardFooter>
+          </Card>
+        </motion.div>
       ))}
     </div>
   );

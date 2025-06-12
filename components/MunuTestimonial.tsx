@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Image from "next/image";
-import { TiltCard } from "./gsap/tilt-card";
+import { TiltCard } from "./motion/tilt-card";
 
 const testimonials = [
   {

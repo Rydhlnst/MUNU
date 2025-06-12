@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/accordion"
 import { DiscordFreeIcons } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { TiltButton } from "./gsap/tilt-button"
+import { TiltButton } from "./motion/tilt-button"
 
 const faqs = [
   {

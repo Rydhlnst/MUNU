@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Twitter, Github, Linkedin } from "lucide-react";
-import { TiltIcon } from "./gsap/tilt-icon";
-import { TiltText } from "./gsap/tilt-text";
+import { TiltIcon } from "./motion/tilt-icon";
+import { TiltText } from "./motion/tilt-text";
 
 // Helper component for Footer links to reduce repetition
 // Slightly modified to fit the primary background theme
