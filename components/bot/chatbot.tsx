@@ -8,11 +8,7 @@ import ReactMarkdown from "react-markdown";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { TypingIndicator } from "./typingeffect";
 import { motion, AnimatePresence } from "framer-motion";
-
-type Message = {
-  from: "user" | "bot";
-  text: string;
-};
+import { useChatStore } from "@/stores/chat";
 
 const quickSnippets = [
   { short: "What is MUNU?", full: "What is MUNU and how does it work?" },
@@ -32,14 +28,13 @@ const chatVariants = {
 export default function Chatbot() {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const { messages, addMessage, isLoading, setIsLoading } = useChatStore();
   const bottomRef = useRef<HTMLDivElement>(null);
 
   const handleAsk = async (question: string) => {
     if (!question || isLoading) return;
 
-    setMessages((prev) => [...prev, { from: "user", text: question }]);
+    addMessage({ from: "user", text: question });
     setInput("");
     setIsLoading(true);
 
@@ -50,18 +45,22 @@ export default function Chatbot() {
           question,
           language: "en",
         }),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
 
       const data = await res.json();
       const botResponse = data.result || "Sorry, I couldn't find an answer.";
 
-      setMessages((prev) => [...prev, { from: "bot", text: botResponse }]);
+      addMessage({ from: "bot", text: botResponse });
     } catch {
-      setMessages((prev) => [...prev, { from: "bot", text: "Oops! Assistant is currently unavailable." }]);
+      addMessage({ from: "bot", text: "Oops! Assistant is currently unavailable." });
     } finally {
       setIsLoading(false);
     }
   };
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

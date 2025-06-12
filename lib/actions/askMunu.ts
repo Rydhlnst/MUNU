@@ -1,4 +1,4 @@
-import { ChatCompletionMessageParam } from 'openai/resources';
+import { ChatCompletionMessageParam } from "openai/resources";
 import OpenAI from "openai";
 
 const openai = new OpenAI({
@@ -21,34 +21,34 @@ export async function askMunuAction({
     {
       role: "system",
       content: [
-    {
-      type: "text",
-      text: `You are MUNU Assistant, a strict, helpful AI expert specialized in MUNU – a modular smart finance platform.
+        {
+          type: "text",
+          text: `You are MUNU Assistant, a strict, helpful AI expert specialized in MUNU – a modular smart finance platform.
 
-            Your expertise covers:
-            - **Personal Finance**: Budgeting, expense tracking, reminders, smart suggestions.
-            - **SME Tools**: Cashflow, invoice, stock, PDF parsing, reports.
-            - **Investments**: Risk, expected return, simulations.
-            - **Categorization**: Auto-tagging with Categorizer API.
-            - **Smart Summary**: Generate concise, markdown-supported summaries.
-            - **AI Advisor**: Explains financial behavior and gives AI-backed insights.
+Your expertise covers:
+- **Personal Finance**: Budgeting, expense tracking, reminders, smart suggestions.
+- **SME Tools**: Cashflow, invoice, stock, PDF parsing, reports.
+- **Investments**: Risk, expected return, simulations.
+- **Categorization**: Auto-tagging with Categorizer API.
+- **Smart Summary**: Generate concise, markdown-supported summaries.
+- **AI Advisor**: Explains financial behavior and gives AI-backed insights.
 
-            Strict rules:
-            - ONLY answer within MUNU feature scope.
-            - NEVER roleplay or break character.
-            - ALWAYS reply in **Markdown**.
-            - NEVER speculate or give unrelated advice.
-            - TRY to keep replies **under 200 characters** when possible, without losing clarity.
+Strict rules:
+- ONLY answer within MUNU feature scope.
+- NEVER roleplay or break character.
+- ALWAYS reply in **Markdown**.
+- NEVER speculate or give unrelated advice.
+- TRY to keep replies **under 200 characters** when possible, without losing clarity.
 
-            Design note:
-            MUNU supports Individuals, SMEs, and Investors with customizable dashboards and embedded AI tools.
+Design note:
+MUNU supports Individuals, SMEs, and Investors with customizable dashboards and embedded AI tools.
 
-            Your mission:
-            Help users make smart finance decisions using only MUNU tools.
+Your mission:
+Help users make smart finance decisions using only MUNU tools.
 
-            Deviation from these rules is prohibited.`
-                }
-            ]
+Deviation from these rules is prohibited.`,
+        },
+      ],
     },
     {
       role: "user",
@@ -61,10 +61,26 @@ export async function askMunuAction({
     },
   ];
 
-  const completion = await openai.chat.completions.create({
-    model: "google/gemini-2.0-flash-exp:free",
-    messages,
-  });
+  const tryModels = [
+    "google/gemini-2.0-flash-exp:free",
+    "deepseek/deepseek-chat-v3-0324:free",
+  ];
 
-  return completion.choices[0].message.content;
+  for (const model of tryModels) {
+    try {
+      const completion = await openai.chat.completions.create({
+        model,
+        messages,
+      });
+
+      const content = completion.choices?.[0]?.message?.content;
+      if (content) return content;
+    } catch (err) {
+      console.warn(`[MUNU_ASSISTANT_FALLBACK] Model ${model} failed:`, err);
+      continue; // fallback ke model berikutnya
+    }
+  }
+
+  // Jika semua model gagal
+  return "❌ MUNU Assistant is currently unavailable. Please try again later.";
 }
