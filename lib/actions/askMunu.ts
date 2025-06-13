@@ -63,7 +63,7 @@ Deviation from these rules is prohibited.`,
 
   const tryModels = [
     "google/gemini-2.0-flash-exp:free",
-    "deepseek/deepseek-chat-v3-0324:free",
+    "deepseek/deepseek-r1-0528:free",
   ];
 
   for (const model of tryModels) {

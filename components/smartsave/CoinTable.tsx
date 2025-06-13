@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Table,
   TableBody,
@@ -22,79 +22,50 @@ import {
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertTriangle } from "lucide-react";
 import Image from "next/image";
-import { getCoinMarkets } from "@/lib/coingecko";
-
-type Coin = {
-  id: string;
-  symbol: string;
-  name: string;
-  image: string;
-  current_price: number;
-  price_change_percentage_24h: number;
-};
+import { useCoinMarkets } from "@/app/api/coin/prices/route";
+import type { Coin } from "@/types/coin"; 
 
 const INITIAL_DISPLAY_COUNT = 5;
 const INCREMENT_COUNT = 5;
 
 export default function CoinTableImproved() {
-  const [coins, setCoins] = useState<Coin[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { data: coins = [], isLoading: loading, error } = useCoinMarkets();
   const [selectedCoin, setSelectedCoin] = useState<Coin | null>(null);
-  
-  // 1. Tambahkan state untuk jumlah item yang terlihat
   const [visibleCount, setVisibleCount] = useState(INITIAL_DISPLAY_COUNT);
 
-  useEffect(() => {
-    const fetchCoins = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const data = await getCoinMarkets();
-        setCoins(data);
-      } catch (e) {
-        setError(`Gagal memuat data koin. Silakan coba lagi nanti. ${e}`);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchCoins();
-  }, []);
-
-    const renderSkeleton = () => (
+  const renderSkeleton = () => (
     <>
-        {Array(INITIAL_DISPLAY_COUNT)
+      {Array(INITIAL_DISPLAY_COUNT)
         .fill(0)
         .map((_, index) => (
-            <TableRow key={`skeleton-${index}`}>
+          <TableRow key={`skeleton-${index}`}>
             <TableCell>
-                <div className="flex items-center gap-3">
-                {/* Tambahkan kelas warna abu-abu di sini */}
+              <div className="flex items-center gap-3">
                 <Skeleton className="h-6 w-6 rounded-full bg-gray-200" />
                 <Skeleton className="h-4 w-24 bg-gray-200" />
-                </div>
+              </div>
             </TableCell>
             <TableCell>
-                <Skeleton className="h-4 w-12 bg-gray-200" />
+              <Skeleton className="h-4 w-12 bg-gray-200" />
             </TableCell>
             <TableCell>
-                <Skeleton className="h-4 w-32 bg-gray-200" />
+              <Skeleton className="h-4 w-32 bg-gray-200" />
             </TableCell>
             <TableCell className="text-right">
-                <Skeleton className="h-4 w-20 bg-gray-200" />
+              <Skeleton className="h-4 w-20 bg-gray-200" />
             </TableCell>
             <TableCell className="text-right">
-                <Skeleton className="h-9 w-24 bg-gray-200" />
+              <Skeleton className="h-9 w-24 bg-gray-200" />
             </TableCell>
-            </TableRow>
+          </TableRow>
         ))}
     </>
-    );
+  );
 
   const handleCreatePlanClick = (coin: Coin) => {
     setSelectedCoin(coin);
   };
-  
+
   const handleSeeMore = () => {
     setVisibleCount((prevCount) => prevCount + INCREMENT_COUNT);
   };
@@ -121,13 +92,12 @@ export default function CoinTableImproved() {
                   <Alert variant="destructive">
                     <AlertTriangle className="h-4 w-4" />
                     <AlertTitle>Error</AlertTitle>
-                    <AlertDescription>{error}</AlertDescription>
+                    <AlertDescription>{`${error}`}</AlertDescription>
                   </Alert>
                 </TableCell>
               </TableRow>
             ) : coins.length > 0 ? (
               <>
-                {/* 2. Gunakan slice() untuk membatasi data yang di-render */}
                 {coins.slice(0, visibleCount).map((coin) => (
                   <TableRow key={coin.id}>
                     <TableCell className="flex items-center gap-3">
@@ -177,7 +147,6 @@ export default function CoinTableImproved() {
               </TableRow>
             )}
 
-            {/* 3. Tambahkan tombol "Lihat Lainnya" di bawah tabel */}
             {!loading && !error && visibleCount < coins.length && (
               <TableRow>
                 <TableCell colSpan={5} className="text-center">
@@ -191,7 +160,6 @@ export default function CoinTableImproved() {
         </Table>
       </div>
 
-      {/* Konten Dialog untuk "Create Plan" */}
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Buat Rencana untuk {selectedCoin?.name}</DialogTitle>
